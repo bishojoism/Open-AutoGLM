@@ -9,7 +9,7 @@ import base64
 
 def 进入搜索结果界面(agent: PhoneAgent):
     agent.run(
-        "打开快手搜索“评论区找对象”，点漏斗图标把搜索条件设置为7日内、未看过。",
+        "搜索“评论区找对象”，点漏斗图标把搜索条件设置为7日内、未看过。",
         "进入搜索结果界面",
     )
 
@@ -69,7 +69,12 @@ def 用户获取(agent: PhoneAgent):
         进入评论区界面(agent)
         while True:
             if 关注要男朋友的(agent):
-                连按六次返回键(agent)
+                agent.action_handler._handle_back(dict(), 0, 0)
+                agent.action_handler._handle_back(dict(), 0, 0)
+                agent.action_handler._handle_back(dict(), 0, 0)
+                agent.action_handler._handle_back(dict(), 0, 0)
+                agent.action_handler._handle_back(dict(), 0, 0)
+                agent.action_handler._handle_back(dict(), 0, 0)
                 return
             翻评论区(agent)
             if 判断评论区有没有到底(agent):
@@ -97,7 +102,10 @@ def run():
     agent = PhoneAgent(model_config, agent_config)
 
     # 执行任务
+    agent.action_handler._handle_launch(dict(app="快手"), 0, 0)
     用户获取(agent)
+    agent.action_handler._handle_back(dict(), 0, 0)
+    agent.action_handler._handle_back(dict(), 0, 0)
 
 
 if __name__ == "__main__":

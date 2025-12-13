@@ -126,9 +126,7 @@ class PhoneAgent:
             result = self._execute_step(is_first=False, enable_recording=bool(recording_id))
 
             if result.finished:
-                print(1)
                 if recording_id:
-                    print(2)
                     self._save_recording(recording_path, task)
                 return result.message or "Task completed"
 
