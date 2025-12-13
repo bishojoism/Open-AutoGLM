@@ -67,7 +67,6 @@ def acquisition(agent: PhoneAgent):
                                 raise Exception(result)
                         except Exception as e:
                             print("翻评论区失败：", e)
-                            continue
                         print("正在判断到底提示……")
                         try:
                             result = agent.run(
@@ -142,7 +141,6 @@ def run():
                 raise Exception(result)
         except Exception as e:
             print("翻评论区失败：", e)
-            continue
         print("正在判断到底提示……")
         try:
             result = agent.run(
