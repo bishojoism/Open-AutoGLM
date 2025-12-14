@@ -24,14 +24,14 @@ def 关注要男朋友的(agent: PhoneAgent) -> bool:
         if "男朋友" in i["text"]:
             x, y = i["box"][3]
             agent.action_handler._handle_tap(
-                dict(element=[x - 100, y - 100]),
+                dict(element=[x - 100, y - 20]),
                 screenshot.width,
                 screenshot.height,
                 False,
             )
             screenshot = get_screenshot(agent.agent_config.device_id)
             for j in m.ocr(base64.b64decode(screenshot.base64_data)):
-                if j["text"] == "十关注":
+                if j["text"] == "十关注" or j["text"] == "+关注":
                     agent.action_handler._handle_tap(
                         dict(element=j["box"][0]),
                         screenshot.width,
@@ -118,21 +118,22 @@ def run():
     agent = PhoneAgent(model_config, agent_config)
 
     # 执行任务
-    agent.action_handler._handle_launch(dict(app="快手"), 0, 0)
-    while True:
-        try:
-            用户获取(agent)
-        except:
-            while True:
-                try:
-                    agent.run("回到快手首页")
-                except:
-                    continue
-                break
-            continue
-        break
-    agent.action_handler._handle_back(dict(), 0, 0)
-    agent.action_handler._handle_back(dict(), 0, 0)
+    关注要男朋友的(agent)
+    # agent.action_handler._handle_launch(dict(app="快手"), 0, 0)
+    # while True:
+    #     try:
+    #         用户获取(agent)
+    #     except:
+    #         while True:
+    #             try:
+    #                 agent.run("回到快手首页")
+    #             except:
+    #                 continue
+    #             break
+    #         continue
+    #     break
+    # agent.action_handler._handle_back(dict(), 0, 0)
+    # agent.action_handler._handle_back(dict(), 0, 0)
 
 if __name__ == "__main__":
     run()
