@@ -102,7 +102,7 @@ class PhoneAgent:
         Returns:
             Final message from the agent.
         """
-        if randint(1, self.agent_config.max_steps**1.5) == 1:
+        if randint(1, int(self.agent_config.max_steps**1.5)) == 1:
             raise Exception("自纠错")
 
         self._context = []
